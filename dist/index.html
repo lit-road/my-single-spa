@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+
+<head>
+  <title>Home</title>
+</head>
+
+<body>
+  <script type="module" src="index.js"></script>
+  <script type="module">
+    // import { start, registerMircoApps } from './dist/index.js';
+    // 调试入口
+    debugger
+    registerMircoApps([
+      {
+        name: "app1",
+        entry: "http://baidu.com",
+        container: "#app1",
+        activeRule: "/app1",
+      },
+      {
+        name: "app2",
+        entry: "http://google.com",
+        container: "#app2",
+        activeRule: "/app2",
+      },
+    ], {
+      beforeLoad: [
+        (app) => {
+          console.log("beforeLoad", app);
+          return new Promise((resolve) => {
+            setTimeout(() => {
+              resolve(() => {
+                console.log("beforeLoad", app);
+              });
+            })
+          })
+        },
+        (app) => {
+          console.log("test", app);
+          return new Promise((resolve) => {
+            setTimeout(() => {
+              resolve(() => {
+                console.log("test", app);
+              });
+            })
+          })
+        }
+      ],
+      beforeMount: (app) => {
+        console.log("beforeMount", app);
+        return new Promise((resolve) => {
+          setTimeout(() => {
+            resolve(() => {
+              console.log("beforeMount", app);
+            });
+          });
+        });
+      },
+      afterMount: (app) => {
+        console.log("afterMount", app);
+        return new Promise((resolve) => {
+          setTimeout(() => {
+            resolve(() => {
+              console.log("afterMount", app);
+            });
+          });
+        });
+      },
+      beforeUnmount: (app) => {
+        console.log("beforeUnmount", app);
+        return new Promise((resolve) => {
+          setTimeout(() => {
+            resolve(() => {
+              console.log("beforeUnmount", app);
+            });
+          });
+        });
+      },
+    });
+
+    start();
+  </script>
+  <div id="app1"></div>
+  <div id="app2"></div>
+</body>
+
+</html>

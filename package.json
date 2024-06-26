@@ -1,0 +1,21 @@
+{
+  "name": "try-single",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "compile": "tsc --sourcemap --project tsconfig.json",
+    "test": "jest"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.19.2",
+    "import-html-entry": "^1.15.2",
+    "path-to-regexp": "^6.2.2"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0"
+  }
+}
